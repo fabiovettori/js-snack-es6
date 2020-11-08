@@ -126,17 +126,17 @@
     // solamente nome e colore e opacità del fiocco
     // per ogni gatto.
 
-    let arrayCat = [];
+    let arrayCats = [];
     cats.forEach( (cat, i) => {
 
         const {name, color, age} = cat;
         const opacity = `${age * 10}%`;
 
-        array[i] = {
+        arrayCats[i] = {
             name,
             color,
             opacity
         }
     });
-    console.log(arrayCat);
+    console.log(arrayCats);
 });
