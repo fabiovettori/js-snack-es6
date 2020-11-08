@@ -1,4 +1,4 @@
-$(document).ready(function(){
+ $(document).ready(function(){
 
     // milestone 1:
     // definire un array di oggetti; ogni oggetto
@@ -78,11 +78,26 @@ $(document).ready(function(){
     // gatto è più giovane, più scuro se il gatto è più
     // vecchio.
 
-    cats.filter((cat) => {
-        const {gender, color,  name, age} = cat;
-        if (gender == 'female') {
+    const catsFemale = cats.filter( (cat) => {
+        if (cat.gender == 'female') {
 
-            return $('.female').append(
+            return true;
+        }
+    });
+    console.log(catsFemale);
+
+    const catsMale = cats.filter( (cat) => {
+        if (cat.gender == 'male') {
+
+            return true;
+        }
+    });
+    console.log(catsFemale);
+
+    catsFemale.forEach( (cat) => {
+        const {color,  name, age} = cat;
+
+        $('.female').append(
                 `<div>
                     <div class="cat">
                         <span class="fas fa-cat" style="color:${color}"></span>
@@ -90,22 +105,19 @@ $(document).ready(function(){
                     </div>
                     <span class="fas fa-ribbon" style="color:pink; opacity:${age * 10}%"></span>
                 </div>`);
-        }
     });
 
-    cats.filter((cat) => {
-        const {gender, color,  name, age} = cat;
-        if (gender == 'male') {
+    catsMale.forEach( (cat) => {
+        const {color,  name, age} = cat;
 
-            return $('.male').append(
+        $('.male').append(
                 `<div>
                     <div class="cat">
                         <span class="fas fa-cat" style="color:${color}"></span>
                         <span>${name}</span>
                     </div>
-                    <span class="fas fa-ribbon" style="color:blue; opacity:${age *10}%"></span>
+                    <span class="fas fa-ribbon" style="color:blue; opacity:${age * 10}%"></span>
                 </div>`);
-        }
     });
 
     // milestone 3:
@@ -114,13 +126,17 @@ $(document).ready(function(){
     // solamente nome e colore e opacità del fiocco
     // per ogni gatto.
 
-    let array = [];
+    let arrayCat = [];
     cats.forEach( (cat, i) => {
 
         const {name, color, age} = cat;
-        array.push({name});
-        array[i]['color'] = color;
-        array[i]['opacity'] = `${age * 10}%`;
+        const opacity = `${age * 10}%`;
+
+        array[i] = {
+            name,
+            color,
+            opacity
+        }
     });
-    console.log(array);
+    console.log(arrayCat);
 });
